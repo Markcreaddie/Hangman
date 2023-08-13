@@ -1,13 +1,14 @@
 require "./lib/serialization.rb"
 class ComputerPlayer
     include BasicSerializable
-    
+
     attr_accessor :name,:random_word, :guess_limit, :remaining_chars, :valid_chars, :selected_chars
 
     def initialize()
         self.name= "computer"
         self.remaining_chars=*('a'..'z')
         self.selected_chars = []
+        self.random_word=""
     end
     
     def pick_random_word(dict_words)  

@@ -3,7 +3,7 @@ require "./lib/serialization.rb"
 class Board
     include BasicSerializable
     
-    attr_accessor :correct_chars, :wrong_chars
+    attr_accessor :correct_chars
     
     def initialize(guess)
         self.correct_chars=""
@@ -19,10 +19,12 @@ class Board
                 self.correct_chars +="_"
             end
         end
-        puts <<~TEXT
-        The chosen word is #{word_length} characters long.
-        #{correct_chars}
-        TEXT
+        unless word_length==0
+            puts <<~TEXT
+            The chosen word is #{word_length} characters long.
+            #{correct_chars}
+            TEXT
+        end
     end
 
     def display_correct_chars(char_indices,char)
