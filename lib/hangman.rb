@@ -54,6 +54,7 @@ class Hangman
 
     def play()
         while player1.guess_limit>0 && board.correct_chars.include?("_")
+            puts "\nSelected letters: #{player1.selected_chars.join(" ")}\nMake a guess:"
             char= gets.chomp!.downcase
             if player1.correct_word(char)
                 break

@@ -1,9 +1,10 @@
 class ComputerPlayer
-    attr_accessor :name,:random_word, :guess_limit, :remaining_chars, :valid_chars
+    attr_accessor :name,:random_word, :guess_limit, :remaining_chars, :valid_chars, :selected_chars
 
     def initialize()
         self.name= "computer"
         self.remaining_chars=*('a'..'z')
+        self.selected_chars = []
     end
     
     def pick_random_word(dict_words)  
@@ -38,7 +39,9 @@ class ComputerPlayer
 
     def validate_guess(char,board)
         unless self.remaining_chars.include?(char)
-            puts "#{char} has already been guessed. Pick another character."
+            puts <<~TEXT
+            #{char} has already been guessed. Pick another character.
+            TEXT
             return
         end
         if valid_chars.include?(char)
@@ -54,6 +57,7 @@ class ComputerPlayer
             reduce_guesses()
         end
         self.remaining_chars.delete(char)
+        self.selected_chars.push(char)
     end
 
 end

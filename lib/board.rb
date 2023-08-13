@@ -34,7 +34,7 @@ class Board
         puts <<~TEXT
         #{char} does not exist in the word.
         #{correct_chars}
-        
+
         TEXT
     end
 end
