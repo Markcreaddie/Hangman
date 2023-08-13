@@ -1,19 +1,24 @@
+require "./lib/board.rb"
+require "./lib/hangman.rb"
 
-def read_file(file_name)
-    file = File.open(file_name, "r")
-    data = file.read
-    file.close
-    return data.split("\n")
-end
+def start_game()
+    puts <<~TEXT
+    Would you like to:
+    [1] Start a new game
+    [2] Resume a previous game
 
-dict_words=read_file("google-10000-english-no-swears.txt")
-
-def pick_random_word(my_array)  
-    selected_word=my_array[rand(my_array.count)]
-    if selected_word.length>=5 && selected_word.length<=12
-        return selected_word
+    TEXT
+    option= gets.chomp!()
+    if option == "1" || option == "2"
+        return option
     end
-    pick_random_word(my_array)
+    puts "\n#{option} is not a valid choice.\nPick 1 or 2\n\n"
+    start_game()
 end
 
-p pick_random_word(dict_words) 
+
+game =Hangman.new(start_game())
+game.play()
+
+
+#Board1=Board.new("rampage")
