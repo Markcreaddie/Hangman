@@ -20,5 +20,5 @@ end
 game =Hangman.new(start_game())
 game.play()
 
-
+p game.serialize
 #Board1=Board.new("rampage")

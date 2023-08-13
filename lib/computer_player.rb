@@ -1,4 +1,7 @@
+require "./lib/serialization.rb"
 class ComputerPlayer
+    include BasicSerializable
+    
     attr_accessor :name,:random_word, :guess_limit, :remaining_chars, :valid_chars, :selected_chars
 
     def initialize()

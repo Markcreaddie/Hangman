@@ -1,10 +1,16 @@
 require "./lib/computer_player.rb"
 require "./lib/board.rb"
+require "./lib/serialization.rb"
 
 class Hangman
-    attr_accessor :player1, :board
+    include BasicSerializable
+
+    attr_accessor :player1, :board, :name
 
     def initialize(option)
+        self.player1=ComputerPlayer.new()
+        self.board= Board.new(player1.random_word)
+        self.name="my_game"
         if option== "1"
             new_game()
         else
@@ -13,11 +19,9 @@ class Hangman
     end
 
     def new_game()
-        self.player1=ComputerPlayer.new()
         puts "\nA new game has started"
         dict_words=get_dict_words()
         player1.random_word=player1.pick_random_word(dict_words)
-        self.board= Board.new(player1.random_word)
         player1.set_guess_limit()
     end
 
@@ -25,8 +29,6 @@ class Hangman
         puts "\npick the game to resume"
     end
 
-    def save_game()
-    end
 
     def get_dict_words()
         file = File.open("./lib/dictionary.txt", "r")

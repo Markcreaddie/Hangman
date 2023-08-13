@@ -1,4 +1,8 @@
+require "./lib/serialization.rb"
+
 class Board
+    include BasicSerializable
+    
     attr_accessor :correct_chars, :wrong_chars
     
     def initialize(guess)
